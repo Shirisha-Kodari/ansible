@@ -1,0 +1,48 @@
+- name: funtions
+  hosts: local 
+  connection: local 
+  vars:
+    persons: "ramesh,suresh,raheem,joseph"
+  tasks:
+  - name: check undefined variable 
+    ansible.builtin.debug:
+      msg: "hello, {{ person | default('ramesh') }}" #default taking ramesh 
+  
+  - name: print name 
+    ansible.builtin.debug:
+      msg: "hello, {{ person |split (',') }}" #string conver to list by using split funtion  
+
+  - name: convert map into list 
+    vars:
+      course:
+        name: ansible
+        duration: 10HR
+        trainer: Sivakumar
+    ansible.builtin.debug:
+      msg: "course info: {{ course | dict2items }}" #conver to map into list 
+
+  - name: convert list into map  
+    vars:
+      course:
+      - {'key': 'name', 'value': 'ansible'}
+      - { 'key': 'duration', 'value': '10hr'}
+      - { 'key': 'trainer', 'value': 'sivakumar'}
+    ansible.builtin.debug:
+      msg: "course info: {{ course | itemsdict2 }}"
+
+  - name: conver to uppercase 
+    vars:
+      name: "sivakumar reddy M"
+    ansible.builtin.debug:
+      msg: "hello, {{ name | upper }}"
+
+  - name: conver to lowercase 
+    vars:
+      name: "sivakumar reddy M"
+    ansible.builtin.debug:
+      msg: "hello, {{ name | lowercase }}"
+  - name: check ip address valid or not 
+    vars: 
+      ip: "34.89.67.45"
+    ansible.builtin.debug:
+      msg: "is {{ ip | ansible.utils.ipaddr }}" 

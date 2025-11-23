@@ -1,13 +1,13 @@
 - name: play level variables
   hosts: local
   connection: local
-  vars:
+  vars: #global access 
     COURSE: DevOps with AWS # equal to COURSE=Ansible in shell, shell we refer $VAR or ${VAR}
     DURATION: 10HR
     TRAINER: Sivakumar
   tasks:
   - name: print course information
-    vars: 
+    vars: #local access
       COURSE: ansible
     ansible.builtin.debug:
        msg: "Hello {{ COURSE }}, Course Duration: {{ DURATION }}, Trainer is {{ TRAINER }}"
