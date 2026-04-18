@@ -1,0 +1,19 @@
+- hosts: webservers
+  become: yes
+  serial: 2
+
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start Nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Enable Nginx
+      service:
+        name: nginx
+        enabled: yes

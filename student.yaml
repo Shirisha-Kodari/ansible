@@ -1,0 +1,10 @@
+- firstname: shirisha104
+  lastname: k
+  email: shirisha2@.com
+  address: 
+  - type: perm
+    doorno: 123
+    street: polaram
+  - type: temp
+    doorno: 123
+    street: nagarm
