@@ -4,7 +4,7 @@
   vars: #global access 
     COURSE: DevOps with AWS # equal to COURSE=Ansible in shell, shell we refer $VAR or ${VAR} 
     DURATION: 10HR 
-    TRAINER: Sivakumar 
+    TRAINER: Sivakumar  
   tasks:
   - name: print course information
     vars: #local access
