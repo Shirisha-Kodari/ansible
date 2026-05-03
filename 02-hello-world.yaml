@@ -1,4 +1,4 @@
-- name: hello workd  
+- name: hello workd   
   hosts: local  
   connection: local # no need of username and password    
   tasks:
