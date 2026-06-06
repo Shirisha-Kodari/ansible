@@ -1,5 +1,5 @@
 - name: nginx install and run 
-  hosts: frontend
+  hosts: frontend 
   become: yes # sudo access   
   tasks:
     - name: install nginx server #first task install nginx 
