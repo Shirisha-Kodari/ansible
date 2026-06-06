@@ -3,7 +3,7 @@
   become: yes # sudo access    
   tasks:
     - name: install nginx server #first task install nginx   
-      ansible.builtin.package: 
+      ansible.builtin.package:  
         name: nginx
         state: present
 
