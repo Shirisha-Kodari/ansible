@@ -1,7 +1,7 @@
 - name: nginx install and run  
   hosts: frontend  
   become: yes # sudo access    
-  tasks:
+  tasks: 
     - name: install nginx server #first task install nginx      
       ansible.builtin.package:  
         name: nginx
