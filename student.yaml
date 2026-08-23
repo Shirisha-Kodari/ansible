@@ -1,10 +1,33 @@
-- firstname: shirisha104
-  lastname: k
-  email: shirisha2@.com
-  address: 
+# - firstname: shirisha104
+#   lastname: k
+#   email: shirisha2@.com
+#   address: 
+#   - type: perm
+#     doorno: 123
+#     street: polaram
+#   - type: temp
+#     doorno: 123
+#     street: nagarm
+
+- firstname: sivakumar
+  lastname: m
+  email: info@joindevops.com
+  addresses: # list of addresses
   - type: perm
-    doorno: 123
-    street: polaram
-  - type: temp
-    doorno: 123
-    street: nagarm
+    doorNo: 143
+    street: gandhiNagar
+  - type: current
+    doorNo: 143
+    street: gandhiNagar
+
+
+- firstname: sivakumar
+  lastname: m
+  email: info@joindevops.com
+  addresses: # list of addresses
+  - type: perm
+    doorNo: 143
+    street: gandhiNagar
+  - type: current
+    doorNo: 143
+    street: gandhiNagar
