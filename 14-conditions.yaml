@@ -1,6 +1,6 @@
 
 - name: conditions demo
-  hosts: local
+  hosts: localhost
   connection: local
   vars:
     NUMBER: 78
