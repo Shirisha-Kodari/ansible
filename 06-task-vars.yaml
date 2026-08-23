@@ -15,3 +15,7 @@
   - name: print course information again
     ansible.builtin.debug:
        msg: "Hello {{ COURSE }}, Course Duration: {{ DURATION }}, Trainer is {{ TRAINER }}"
+
+
+# this is the task level variable 
+# task-level variable has higher precedence than the play-level variable
