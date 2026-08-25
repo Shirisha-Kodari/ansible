@@ -1,6 +1,6 @@
 ---
 - name: Destroy EC2 and Route53 records
-  hosts: local
+  hosts: localhost
   connection: local
 
   vars:
