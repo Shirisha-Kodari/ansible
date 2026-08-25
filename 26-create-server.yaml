@@ -7,9 +7,9 @@
     - mysql
     - backend
     - frontend
-    subnet_id: subnet-03251d4a08131640e
-    sg_id: sg-07bae4cc6ca856d4a
-    zone_id: Z0342386ADU8CPI7S8K
+    subnet_id: subnet-0e65aaf2fa5fb8db6
+    sg_id: sg-0f6fd0ebbf2749559
+    zone_id: Z05169793PXSJ01X7N5ZV
     zone: kodari.online
   tasks:
   - name: create ec2
