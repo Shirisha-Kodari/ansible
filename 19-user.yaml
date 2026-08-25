@@ -5,17 +5,18 @@
   tasks:
 
     - name: check roboshop user exists or not
-      ansible.builtin.command: id roboshop
+      ansible.builtin.command: id roboshop  #user exixt or not using this command check 
       ignore_errors: true
-      register: output
+      register: output  #after run that results store this output  
 
     - name: create user
       become: yes
-      ansible.builtin.command: useradd roboshop
-      when: output.rc != 0 # failed 
+      ansible.builtin.command: useradd roboshop 
+      when: output.rc != 0 # failed rc !=0 user doesnot exita
 
     - name: user already exists
       ansible.builtin.debug:
         msg: "User already exists"
-      when: output.rc == 0  # succed 
+      when: output.rc == 0  # succed and return code  if user exits then skip and commns sucess 
 
+# rc ==0 user exists 
