@@ -1,63 +1,146 @@
-
 - name: create ec2 and r53 records
   hosts: localhost
   connection: local
+
   vars:
     instances:
-    - mysql
-    - frontend
-    - mongodb
-    - redis 
-    - rabbitmq 
-    - catalogue 
-    - shipping 
-    - user 
-    - cart 
-    - payment 
+      - mysql
+      - frontend
+      - mongodb
+      - redis
+      - rabbitmq
+      - catalogue
+      - shipping
+      - user
+      - cart
+      - payment
+
     subnet_id: subnet-0e65aaf2fa5fb8db6
     sg_id: sg-0f6fd0ebbf2749559
     zone_id: Z05169793PXSJ01X7N5ZV
     zone: kodari.online
+
+  pre_tasks:
+
+    - name: Install pip
+      ansible.builtin.dnf:
+        name: python3-pip
+        state: present
+        update_cache: true
+      become: true
+
+    - name: Install boto3 and botocore
+      ansible.builtin.pip:
+        name:
+          - boto3
+          - botocore
+        state: present
+        executable: pip3
+      become: true
+
   tasks:
-  - name: create ec2
-    amazon.aws.ec2_instance:
-      name: "{{ item }}"
-      vpc_subnet_id: "{{ subnet_id }}"
-      instance_type: t3.micro
-      security_group: "{{ sg_id }}"
-      image_id: ami-0220d79f3f480ecf5
-      tags:
-        Name: "{{ item }}"
-    loop: "{{ instances }}"
-    register: ec2_output
 
-  - name: print ec2_output
-    ansible.builtin.debug:
-      msg: "{{ ec2_output }}"
+    - name: create ec2
+      amazon.aws.ec2_instance:
+        name: "{{ item }}"
+        vpc_subnet_id: "{{ subnet_id }}"
+        instance_type: t3.micro
+        security_group: "{{ sg_id }}"
+        image_id: ami-0220d79f3f480ecf5
+        tags:
+          Name: "{{ item }}"
+      loop: "{{ instances }}"
+      register: ec2_output
 
-  - name: create r53 records
-    amazon.aws.route53:
-      state: present
-      zone: "{{ zone }}"
-      record: "{{ item.item }}.{{ zone }}"
-      type: A
-      ttl: 1
-      value: "{{ item.instances[0].private_ip_address }}"
-      wait: true
-      overwrite: true
-    loop: "{{ ec2_output.results }}"
+    - name: print ec2_output
+      ansible.builtin.debug:
+        msg: "{{ ec2_output }}"
 
-  - name: create r53 records
-    amazon.aws.route53:
-      state: present
-      zone: "{{ zone }}"
-      record: "{{ zone }}"
-      type: A
-      ttl: 1
-      value: "{{ item.instances[0].public_ip_address }}"
-      wait: true
-      overwrite: true
-    loop: "{{ ec2_output.results }}"
-    when: item.item == "frontend"
+    - name: create r53 records
+      amazon.aws.route53:
+        state: present
+        zone: "{{ zone }}"
+        record: "{{ item.item }}.{{ zone }}"
+        type: A
+        ttl: 1
+        value: "{{ item.instances[0].private_ip_address }}"
+        wait: true
+        overwrite: true
+      loop: "{{ ec2_output.results }}"
+
+    - name: create r53 record for frontend
+      amazon.aws.route53:
+        state: present
+        zone: "{{ zone }}"
+        record: "{{ zone }}"
+        type: A
+        ttl: 1
+        value: "{{ item.instances[0].public_ip_address }}"
+        wait: true
+        overwrite: true
+      loop: "{{ ec2_output.results }}"
+      when: item.item == "frontend"
+
+
+# - name: create ec2 and r53 records
+#   hosts: localhost
+#   connection: local
+#   vars:
+#     instances:
+#     - mysql
+#     - frontend
+#     - mongodb
+#     - redis 
+#     - rabbitmq 
+#     - catalogue 
+#     - shipping 
+#     - user 
+#     - cart 
+#     - payment 
+#     subnet_id: subnet-0e65aaf2fa5fb8db6
+#     sg_id: sg-0f6fd0ebbf2749559
+#     zone_id: Z05169793PXSJ01X7N5ZV
+#     zone: kodari.online
+#   tasks:
+#   - name: create ec2
+#     amazon.aws.ec2_instance:
+#       name: "{{ item }}"
+#       vpc_subnet_id: "{{ subnet_id }}"
+#       instance_type: t3.micro
+#       security_group: "{{ sg_id }}"
+#       image_id: ami-0220d79f3f480ecf5
+#       tags:
+#         Name: "{{ item }}"
+#     loop: "{{ instances }}"
+#     register: ec2_output
+
+#   - name: print ec2_output
+#     ansible.builtin.debug:
+#       msg: "{{ ec2_output }}"
+
+#   - name: create r53 records
+#     amazon.aws.route53:
+#       state: present
+#       zone: "{{ zone }}"
+#       record: "{{ item.item }}.{{ zone }}"
+#       type: A
+#       ttl: 1
+#       value: "{{ item.instances[0].private_ip_address }}"
+#       wait: true
+#       overwrite: true
+#     loop: "{{ ec2_output.results }}"
+
+#   - name: create r53 records
+#     amazon.aws.route53:
+#       state: present
+#       zone: "{{ zone }}"
+#       record: "{{ zone }}"
+#       type: A
+#       ttl: 1
+#       value: "{{ item.instances[0].public_ip_address }}"
+#       wait: true
+#       overwrite: true
+#     loop: "{{ ec2_output.results }}"
+#     when: item.item == "frontend"
 
      
