@@ -1,5 +1,5 @@
 - name: user creation roboshop
-  hosts: local
+  hosts: localhost
   connectionns: local
   tasks:
   - name: check roboshop user exits or not 

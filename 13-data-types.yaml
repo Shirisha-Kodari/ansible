@@ -3,7 +3,7 @@
   connection: local
   vars:
     DURATION: 120 # This is number
-    COURSE: "DevSecOps with AWS" # String
+    COURSE: "DevSecOps with AWS" # String  COURSE var name and Devsecops is data type string values 
     IS_LIVE: true # boolean
     TOOLS: # List []
     - Linux
