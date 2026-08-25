@@ -1,6 +1,6 @@
 - name: user creation roboshop
   hosts: localhost
-  connectionns: local
+  connection: local
   tasks:
   - name: check roboshop user exits or not 
     ansible.builtin.command: id roboshop
@@ -10,9 +10,9 @@
     become: yes
     ansible.builtin.command: useradd roboshop
     register: output
-    when: ouput.rc !=0 #if any error then exit here 
+    when: ouput.rc !=0 #if any error then exit here  failed 
 
   - name: user already exits 
     ansible.buitlin.debug: 
       msg: " user already exits "
-    when: output.rc ==0 #user already exits run this 
+    when: output.rc ==0 #user already exits run this succed 
