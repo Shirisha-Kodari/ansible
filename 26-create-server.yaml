@@ -5,8 +5,15 @@
   vars:
     instances:
     - mysql
-    - backend
     - frontend
+    - mongodb
+    - redis 
+    - rabbitmq 
+    - catalogue 
+    - shipping 
+    - user 
+    - cart 
+    - payment 
     subnet_id: subnet-0e65aaf2fa5fb8db6
     sg_id: sg-0f6fd0ebbf2749559
     zone_id: Z05169793PXSJ01X7N5ZV
