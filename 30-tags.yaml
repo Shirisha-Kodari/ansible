@@ -1,0 +1,32 @@
+- name: configure nginx
+  hosts: localhost
+  become: yes
+
+  tasks:
+
+    - name: install nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+      tags:
+        - install
+
+    - name: download frontend code
+      ansible.builtin.get_url:
+        url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+        dest: /tmp/frontend.zip
+      tags:
+        - download
+
+    - name: validate nginx configuration
+      ansible.builtin.command: nginx -t
+      changed_when: false
+      tags:
+        - validate
+
+    - name: start nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+      tags:
+        - start
