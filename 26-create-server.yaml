@@ -16,7 +16,7 @@
       - payment
 
     subnet_id: subnet-0e65aaf2fa5fb8db6
-    sg_id: sg-077984eadd9530f3av
+    sg_id: sg-077984eadd9530f3a
     zone_id: Z05169793PXSJ01X7N5ZV
     zone: kodari.online
 
