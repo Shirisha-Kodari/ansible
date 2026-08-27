@@ -17,23 +17,6 @@ hostnames:
 compose:
   ansible_host: private_ip_address
 
-# plugin: amazon.aws.aws_ec2
-# regions:
-# - us-east-1
-# # key_groups:
-# keyed_groups:
-# - key: tags.Name #dynamic-frontend Ansible creates a group
-#   prefix: "dynamic"
-#   separator: "-"
-# filters:
-#   tag:Name: frontend
-#   instance-state-name: running
-# hostnames:
-#   - private-ip-address  # dynamic-frontend this is the host now 
-# compose:
-#   ansible_host: private_ip_address # sets like as  ansible_host = 172.31.20.10
-
-#                                     # So Ansible knows where to connect.
 
 
 
