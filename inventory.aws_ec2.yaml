@@ -6,7 +6,7 @@ regions:
 keyed_groups:
   - key: tags.Name
     prefix: dynamic
-    separator: "-"
+    separator: "-"  # create like this dynamic_frontend
 
 filters:
   instance-state-name: running
