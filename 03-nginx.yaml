@@ -2,7 +2,7 @@
   hosts: frontend  #[frontend] mention inventort.ini   
   become: yes # sudo access      
   tasks:    
-    - name: install nginx server #first task install nginx                           
+    - name: install nginx server #first task install nginx                            
       ansible.builtin.package:          
         name: nginx
         state: present
