@@ -2,7 +2,7 @@
   hosts: localhost 
   connection: local  
   vars_prompt: 
-  - name: USERNAME
+  - name: USERNAME 
     prompt: please enter your name username         
     private: true 
 
