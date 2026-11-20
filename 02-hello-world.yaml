@@ -7,7 +7,7 @@
 #         msg: "hello world"       
   
 - name: hello world   
-  hosts: localhost  #inventory host here mention same    
+  hosts: localhost  #inventory host here mention same     
   connection: local 
 
   tasks:
