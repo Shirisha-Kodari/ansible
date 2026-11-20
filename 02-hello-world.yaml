@@ -8,7 +8,7 @@
   
 - name: hello world   
   hosts: localhost  #inventory host here mention same  
-  connection: local
+  connection: local 
 
   tasks:
     - name: print hello world
