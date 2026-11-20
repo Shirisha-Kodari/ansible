@@ -6,7 +6,7 @@
 #       ansible.builtin.debug:  #this module print message    
 #         msg: "hello world"       
   
-- name: hello world  
+- name: hello world   
   hosts: localhost  #inventory host here mention same  
   connection: local
 
