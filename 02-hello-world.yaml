@@ -4,7 +4,7 @@
 #   tasks:      
 #     - name: print hello world   
 #       ansible.builtin.debug:  #this module print message    
-#         msg: "hello world"     
+#         msg: "hello world"      
   
 - name: hello world  
   hosts: localhost  #inventory host here mention same  
